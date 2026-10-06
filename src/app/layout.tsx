@@ -4,12 +4,34 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 const Graphik = localFont({
-  src: "./fonts/Graphik-Regular.woff2",
+  src: [
+    {
+      path: "./fonts/Graphik-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    }
+  ],
   variable: "--font-graphik",
 });
 
 const FinancierDisplay = localFont({
-  src: "./fonts/FinancierDisplay-Regular.woff2",
+  src: [
+    {
+      path: "./fonts/FinancierDisplay-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/FinancierDisplay-Light.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "./fonts/FinancierDisplay-LightItalic.woff2",
+      weight: "300",
+      style: "italic",
+    },
+  ],
   variable: "--font-financier",
 });
 
@@ -31,7 +53,7 @@ export default function RootLayout({
         "h-full",
         "antialiased",
         Graphik.variable,
-        FinancierDisplay.variable,
+        FinancierDisplay.variable, // Both variables smoothly injected here
       )}
     >
       <body className="min-h-full flex flex-col">{children}</body>

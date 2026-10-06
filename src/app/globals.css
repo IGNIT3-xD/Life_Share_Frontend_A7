@@ -121,13 +121,16 @@
     * {
         @apply border-border outline-ring/50;
     }
+
     body {
         @apply bg-background text-foreground;
     }
+
     button:not(:disabled),
     [role="button"]:not(:disabled) {
         cursor: pointer;
     }
+
     html {
         @apply font-sans;
     }
@@ -136,4 +139,18 @@
 @theme {
     --font-graphik: var(--font-graphik);
     --font-financier: var(--font-financier);
+}
+
+@layer components {
+    .btn-main {
+        @apply font-graphik bg-[#B15A36] font-medium
+    }
+
+    .btn-sec {
+        @apply font-graphik
+    }
+
+    .container-main {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6
+    }
 }

@@ -1,40 +1,31 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { HeartPulse, UserGroup } from "lucide-react";
 
-const heroVideo1 = "/hero_video_1.mp4";
-const heroVideo2 = "/hero_video_2.mp4";
-const heroVideo3 = "/hero_video_3.mp4";
+const heroVideo1WebM = "/hero_video_1.webm";
+const heroVideo2WebM = "/hero_video_2.webm";
+const heroVideo3WebM = "/hero_video_3.webm";
 
 const slides = [
   {
     id: 1,
-    videoSrcWebm:
-      "https://cdn.coverr.co/videos/coverr-a-woman-looking-at-the-horizon-1571/1080p.webm",
-    videoSrcMp4: heroVideo1,
-    poster:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2560&auto=format&fit=crop",
-    alt: "Woman looking towards the horizon",
+    videoSrcWebm: heroVideo1WebM,
+    poster: "",
+    alt: "Sick women on the hospital bed receving blood.",
   },
   {
     id: 2,
-    videoSrcWebm:
-      "https://cdn.coverr.co/videos/coverr-a-couple-hugging-each-other-1571/1080p.webm",
-    videoSrcMp4: heroVideo2,
-    poster:
-      "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=2560&auto=format&fit=crop",
-    alt: "Couple embracing",
+    videoSrcWebm: heroVideo2WebM,
+    poster: "",
+    alt: "Paramedical team helping a patient",
   },
   {
     id: 3,
-    videoSrcWebm:
-      "https://cdn.coverr.co/videos/coverr-a-man-and-a-woman-walking-in-the-park-1571/1080p.webm",
-    videoSrcMp4: heroVideo3,
-    poster:
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2560&auto=format&fit=crop",
+    videoSrcWebm: heroVideo3WebM,
+    poster: "",
     alt: "Man and woman walking in the park",
   },
 ];
@@ -58,15 +49,31 @@ const slideVariants: Variants = {
   },
 };
 
+const stats = [
+  {
+    id: 1,
+    title: "24/7 Emergency Support",
+    sub: " Help when it matters most",
+  },
+  {
+    id: 2,
+    title: "Verified Donors",
+    sub: " Connect with trusted donors"
+  },
+  {
+    id: 3,
+    title: "Fast Response",
+    sub: "Get help when you need it"
+  },
+]
+
 const VideoSlide = ({
   srcWebm,
-  srcMp4,
   poster,
   isActive,
   alt,
 }: {
   srcWebm: string;
-  srcMp4: string;
   poster: string;
   isActive: boolean;
   alt: string;
@@ -97,26 +104,23 @@ const VideoSlide = ({
       aria-label={alt}
     >
       <source src={srcWebm} type="video/webm" />
-      <source src={srcMp4} type="video/mp4" />
     </video>
   );
 };
 
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
-    if (!isPlaying) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, 7000);
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, []);
 
   return (
     // FIX: Use 100dvh for mobile browser compatibility
-    <section className="relative w-full h-dvh min-h-150 overflow-hidden bg-black text-white font-sans">
+    <section className="relative w-full h-dvh min-h-150 overflow-hidden bg-black text-white">
       {/* Background Carousel */}
       <div className="absolute inset-0 z-0 perspective-[1000px]">
         <AnimatePresence mode="popLayout">
@@ -131,7 +135,6 @@ export default function HeroSection() {
           >
             <VideoSlide
               srcWebm={slides[currentIndex].videoSrcWebm}
-              srcMp4={slides[currentIndex].videoSrcMp4}
               poster={slides[currentIndex].poster}
               isActive={true}
               alt={slides[currentIndex].alt}
@@ -140,28 +143,27 @@ export default function HeroSection() {
         </AnimatePresence>
 
         {/* Dark Overlay - Fixed bg-gradient typo */}
-        <div className="absolute inset-0 z-20 bg-linear-to-r from-black/80 via-black/50 to-black/20 pointer-events-none" />
+        <div className="absolute inset-0 z-20 bg-linear-to-r from-black/80 via-black/50 to-black/80 pointer-events-none" />
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-30 flex flex-col justify-center h-full px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto pt-20 pointer-events-none">
+      <div className="relative z-30 flex flex-col justify-center items-start h-full container-main pointer-events-none">
         {/* Text Block - Adjusted margins and text sizes for mobile */}
-        <div className="max-w-2xl mt-auto mb-24 md:mb-40 pointer-events-auto">
+        <div className="max-w-2xl">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="inline-block px-3 py-1 md:px-4 md:py-1.5 bg-white/20 backdrop-blur-md rounded-full text-xs md:text-sm font-medium tracking-wide mb-4 md:mb-6 font-graphik"
+            className="inline-block px-3 py-1 md:px-4 md:py-1.5 bg-white/20 backdrop-blur-lg rounded-full text-xs md:text-sm font-medium tracking-wide mb-4 md:mb-6 font-graphik"
           >
-            HSA/FSA Eligible
+            Life Share
           </motion.span>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            // Adjusted text sizes: text-5xl is good for mobile, scales up on larger screens
-            className="font-financier text-5xl md:text-6xl lg:text-7xl font-light italic leading-tight tracking-tight mb-4 md:mb-6"
+            className="font-financier text-5xl md:text-6xl lg:text-7xl font-light italic tracking-tight mb-4 md:mb-6"
           >
             Be the reason <br /> someone survives.
           </motion.h1>
@@ -170,7 +172,6 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
-            // Adjusted paragraph sizing for mobile readability
             className="font-graphik text-white/90 font-light max-w-xl mb-8 md:mb-10 leading-relaxed"
           >
             Every drop matters. Connect with nearby blood donors, request blood
@@ -178,27 +179,19 @@ export default function HeroSection() {
           </motion.p>
 
           <div className="flex flex-col md:flex-row gap-4 md:gap-6 pointer-events-auto">
-            <Button className="font-graphik bg-[#B15A36] font-medium px-3 py-2 r">
+            <Button size={"lg"} className="btn-main bg-[#B15A36]">
               <UserGroup /> Find a donor
             </Button>
-            <Button variant={"secondary"} className="font-graphik">
+            <Button variant={"secondary"} className="btn-sec">
               <HeartPulse />
               Request blood
             </Button>
           </div>
         </div>
 
-        {/* Bottom Statistics Grid - Hidden on mobile, visible on md and up */}
-        <div className="hidden md:flex absolute bottom-12 left-6 md:left-16 lg:left-24 flex-wrap gap-6 md:gap-12 pointer-events-auto">
-          {[
-            {
-              title: "24/7 Emergency Support",
-              sub: " Help when it matters most",
-            },
-            { title: "Verified Donors", sub: " Connect with trusted donors" },
-            { title: "Fast Response", sub: "Get help when you need it" },
-          ].map((stat, i) => (
-            <React.Fragment key={i}>
+        <div className="hidden md:flex flex-wrap gap-6 md:gap-12 mt-10">
+          {stats.map((stat, i) => (
+            <React.Fragment key={stat.id}>
               {i > 0 && (
                 <div className="hidden md:block w-px bg-white/30 h-12 self-center" />
               )}
@@ -208,10 +201,10 @@ export default function HeroSection() {
                 transition={{ delay: 0.8 + i * 0.1 }}
                 className="flex flex-col"
               >
-                <span className="text-xl md:text-2xl font-semibold font-financier tracking-tight">
+                <span className="text-xl md:text-2xl font-light font-financier">
                   {stat.title}
                 </span>
-                <span className="text-sm md:text-base text-white/80 font-light mt-1 font-graphik">
+                <span className="text-sm text-white/80 mt-1 font-graphik">
                   {stat.sub}
                 </span>
               </motion.div>
