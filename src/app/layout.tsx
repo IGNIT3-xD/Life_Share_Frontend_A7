@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -53,10 +54,13 @@ export default function RootLayout({
         "h-full",
         "antialiased",
         Graphik.variable,
-        FinancierDisplay.variable, // Both variables smoothly injected here
+        FinancierDisplay.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
