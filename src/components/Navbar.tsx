@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-4 inset-x-4 md:inset-x-8 lg:inset-x-12 max-w-7xl mx-auto px-4 sm:px-6 z-50 font-graphik">
       {/* Main Navbar Container with Glassmorphism */}
-      <nav className="relative flex items-center justify-between px-6 py-3.5 bg-black/40 backdrop-blur-3xl border border-white/10 rounded-3xl text-white shadow-2xl transition-all duration-300">
+      <nav className="relative flex items-center justify-between px-6 py-3.5 bg-black/70 backdrop-blur-xl border border-white/10 rounded-xl text-white shadow-2xl transition-all duration-300">
         {/* Left: Logo */}
         <Link href="/" className="flex items-center gap-3 shrink-0">
           {/* Logo Mark Placeholder */}

@@ -2,6 +2,8 @@ import { DonorCard, type DonorProps } from "@/components/DonorCard";
 import { CollaborateLogo } from "./_components/CollaborateLogo";
 import HeroSection from "./_components/Hero";
 import { RequesterCard, type RequesterProp } from "@/components/RequesterCard";
+import { EmergencyServiceCard, EmergencyServiceProp } from "@/components/EmergencyServiceCard";
+import { CalToAction } from "./_components/CTA";
 
 const donorData: DonorProps = {
   id: "65de081e-c239-4c8f-85ca-1b39a5b47994",
@@ -52,6 +54,21 @@ const requesterData: RequesterProp = {
   "user_id": "f7a78972-d614-4170-b28a-8dd7f1b07cc1",
   "created_at": "2026-09-10T14:01:44.679Z",
   "updated_at": "2026-09-11T03:50:32.978Z"
+};
+
+const emergencyServiceData: EmergencyServiceProp = {
+  "id": "0e9cc7c7-ceb6-4054-a2ce-3b4390cf8f1a",
+  "service_name": "Emergency Ambulance Service",
+  "service_category": "EMERGENCY_AMBULANCE",
+  "service_status": "ACTIVE",
+  "description": "24/7 emergency ambulance service with trained medical staff.",
+  "price": "3000",
+  "service_image": "https://res.cloudinary.com/dn4zumqvq/image/upload/v1789100699/vmfziaxhrxhrgu95c7lx.jpg",
+  "service_image_public_id": "vmfziaxhrxhrgu95c7lx",
+  "availability": "24/7",
+  "hospital_id": "7eb8599f-d244-49e4-bca4-7e7dc2dfd228",
+  "created_at": "2026-09-11T04:24:58.822Z",
+  "updated_at": "2026-09-11T04:58:48.684Z"
 }
 
 const Page = () => {
@@ -71,6 +88,10 @@ const Page = () => {
       <DonorCard data={donorData} />
 
       <RequesterCard data={requesterData} />
+
+      <EmergencyServiceCard data={emergencyServiceData} />
+
+      <CalToAction />
     </div>
   );
 };
