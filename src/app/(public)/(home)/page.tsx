@@ -2,7 +2,7 @@ import { DonorCard, type DonorProps } from "@/components/DonorCard";
 import { CollaborateLogo } from "./_components/CollaborateLogo";
 import HeroSection from "./_components/Hero";
 import { RequesterCard, type RequesterProp } from "@/components/RequesterCard";
-import { EmergencyServiceCard, EmergencyServiceProp } from "@/components/EmergencyServiceCard";
+import { EmergencyServiceCard, type EmergencyServiceProp } from "@/components/EmergencyServiceCard";
 import { CalToAction } from "./_components/CTA";
 
 const donorData: DonorProps = {
@@ -76,7 +76,7 @@ const Page = () => {
     <div>
       <HeroSection />
 
-      <div className="relative mx-auto my-10 grid w-full max-w-5xl px-4 lg:my-16">
+      <div className="relative mx-auto my-10 grid w-full max-w-7xl px-4 sm:px-6 lg:my-16">
         <h2 className="mb-6 text-center text-primary">
           Our Honourable{" "}
           <span className="text-[#B15A36]">Partners</span>.
@@ -85,11 +85,32 @@ const Page = () => {
         <CollaborateLogo />
       </div>
 
-      <DonorCard data={donorData} />
+      <div className="container-main my-10 lg:my-16">
+        <h2 className="mb-6 text-center text-primary">
+          Our Fetaure{" "}
+          <span className="text-[#B15A36]">Donors</span>.
+        </h2>
 
-      <RequesterCard data={requesterData} />
+        <DonorCard data={donorData} />
+      </div>
 
-      <EmergencyServiceCard data={emergencyServiceData} />
+      <div className="container-main my-10 lg:my-16">
+        <h2 className="mb-6 text-center text-primary">
+          Request For The{" "}
+          <span className="text-[#B15A36]">Blood</span>.
+        </h2>
+
+        <RequesterCard data={requesterData} />
+      </div>
+
+      <div className="container-main my-10 lg:my-16">
+        <h2 className="mb-6 text-center text-primary">
+          Emergency{" "}
+          <span className="text-[#B15A36]">Services</span>.
+        </h2>
+
+        <EmergencyServiceCard data={emergencyServiceData} />
+      </div>
 
       <CalToAction />
     </div>

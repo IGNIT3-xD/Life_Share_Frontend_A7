@@ -155,6 +155,6 @@
   }
 
   .text-primary {
-    @apply font-light font-financier italic text-3xl sm:text-2xl lg:text-5xl;
+    @apply font-light font-financier italic text-3xl sm:text-2xl md:text-4xl lg:text-5xl;
   }
 }

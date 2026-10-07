@@ -3,18 +3,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CircleQuestionMark, } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 
 export const CalToAction = () => {
-    const [hasCopied, setHasCopied] = useState(false);
-
-    const handleCopy = () => {
-        setHasCopied(true);
-        setTimeout(() => setHasCopied(false), 2000);
-    };
-
     return (
-        <section className="w-full border py-20 my-10 lg:my-16">
+        <section className="w-full border-t my-10 lg:my-16 pt-8">
             <div className="container-main">
 
                 {/* Main CTA Card */}
