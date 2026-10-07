@@ -58,14 +58,14 @@ const stats = [
   {
     id: 2,
     title: "Verified Donors",
-    sub: " Connect with trusted donors"
+    sub: " Connect with trusted donors",
   },
   {
     id: 3,
     title: "Fast Response",
-    sub: "Get help when you need it"
+    sub: "Get help when you need it",
   },
-]
+];
 
 const VideoSlide = ({
   srcWebm,
@@ -163,7 +163,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="font-financier text-5xl md:text-6xl lg:text-7xl font-light italic tracking-tight mb-4 md:mb-6"
+            className="font-financier text-5xl md:text-6xl lg:text-7xl font-light italic mb-4 md:mb-6"
           >
             Be the reason <br /> someone survives.
           </motion.h1>

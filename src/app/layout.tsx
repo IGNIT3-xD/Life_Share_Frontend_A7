@@ -10,7 +10,7 @@ const Graphik = localFont({
       path: "./fonts/Graphik-Regular.woff2",
       weight: "400",
       style: "normal",
-    }
+    },
   ],
   variable: "--font-graphik",
 });
@@ -52,6 +52,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(
         "h-full",
+        "overflow-x-hidden",
         "antialiased",
         Graphik.variable,
         FinancierDisplay.variable,
