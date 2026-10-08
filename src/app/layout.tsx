@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import { Providers } from "@/providers/queryProviders";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -60,9 +61,11 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

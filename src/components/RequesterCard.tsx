@@ -171,13 +171,6 @@ export function RequesterCard({ data }: { data: RequesterProp }) {
                     )}
                 </div>
 
-                {/* Note (Optional) */}
-                {note && (
-                    <div className="bg-amber-50 rounded-2xl p-4 mb-6 border border-amber-100">
-                        <p className="text-xs text-amber-800 italic leading-relaxed truncate">"{note}"</p>
-                    </div>
-                )}
-
                 {/* Footer Actions */}
                 <div className="flex justify-end mt-auto pt-2">
                     <Button asChild className="btn-main bg-[#B15A36]">

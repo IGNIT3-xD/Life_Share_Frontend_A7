@@ -32,8 +32,8 @@ export type DonorProps = {
         id: string;
         name: string;
         email: string;
-        phone: string;
-        address: string;
+        phone: string | null;
+        address: string | null;
         gender: string;
         profile_pic: string | null;
         profile_pic_public_id: string | null;
