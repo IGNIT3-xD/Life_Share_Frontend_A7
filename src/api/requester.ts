@@ -6,9 +6,9 @@ export type BloodRequesterList = {
     meta: PageMeta;
 }
 
-export async function fetchBloodRequesters(page = 1, limit = 3): Promise<BloodRequesterList> {
+export async function fetchBloodRequesters(rawPage = 1, rawLimit = 3): Promise<BloodRequesterList> {
     const res = await apiClient<ApiEnvelope<BloodRequesterList>>('/api/v1/user/requester', {
-        query: { page, limit },
+        query: { rawPage, rawLimit },
     });
     return res.data;
 }

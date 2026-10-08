@@ -7,12 +7,12 @@ export type EmergencyServiceList = {
 };
 
 export async function fetchEmergencyServices(
-  page = 1,
-  limit = 3,
+  rawPage = 1,
+  rawLimit = 3,
 ): Promise<EmergencyServiceList> {
   const res = await apiClient<ApiEnvelope<EmergencyServiceList>>(
     "/api/v1/emergency-service",
-    { query: { page, limit } },
+    { query: { rawPage, rawLimit } },
   );
   return res.data;
 }

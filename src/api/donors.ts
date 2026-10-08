@@ -8,9 +8,9 @@ export type DonorList = {
 
 const prefix = '/api/v1'
 
-export async function fetchDonors(page = 1, limit = 3): Promise<DonorList> {
+export async function fetchDonors(rawPage = 1, rawLimit = 3): Promise<DonorList> {
   const res = await apiClient<ApiEnvelope<DonorList>>(`${prefix}/donor`, {
-    query: { page, limit },
+    query: { rawPage, rawLimit },
   });
   return res.data;
 }

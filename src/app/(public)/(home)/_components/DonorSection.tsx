@@ -1,9 +1,12 @@
 "use client";
 
 import { DonorCard } from "@/components/DonorCard";
+import { Button } from "@/components/ui/button";
 import { useDonors } from "@/hooks/useDonors";
+import { UserGroup } from "lucide-react";
+import Link from "next/link";
 
-const LIMIT = 3;
+// const LIMIT = 3;
 
 function CardSkeleton() {
   return (
@@ -28,7 +31,7 @@ function CardSkeleton() {
 }
 
 export function DonorSection() {
-  const { data, isPending, error, refetch } = useDonors(1, LIMIT);
+  const { data, isPending, error, refetch } = useDonors(1, 3);
 
   return (
     <div className="container-main my-10 lg:my-16">
@@ -67,11 +70,17 @@ export function DonorSection() {
 
       {data && data.donors.length > 0 && (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {data.donors.slice(0, LIMIT).map((donor) => (
+          {data.donors.map((donor) => (
             <DonorCard key={donor.id} data={donor} />
           ))}
         </div>
       )}
+
+      <div className="my-6 flex items-center justify-center">
+        <Button asChild className="btn-main bg-[#B15A36]">
+          <Link href={'/donor'}>All Donors <UserGroup /></Link>
+        </Button>
+      </div>
     </div>
   );
 }

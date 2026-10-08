@@ -1,9 +1,10 @@
 "use client"
 
 import { RequesterCard } from "@/components/RequesterCard";
+import { Button } from "@/components/ui/button";
 import { useBloodRequester } from "@/hooks/useRequester";
-
-const LIMIT = 3; // Define your limit here
+import { UserPlus } from "lucide-react";
+import Link from "next/link";
 
 function CardSkeleton() {
     return (
@@ -29,7 +30,7 @@ function CardSkeleton() {
 
 const RequesterSection = () => {
     // Pass the LIMIT constant to your hook
-    const { data, isPending, error, refetch } = useBloodRequester(1, LIMIT);
+    const { data, isPending, error, refetch } = useBloodRequester(1, 3);
 
     return (
         <div className="container-main my-10 lg:my-16">
@@ -69,11 +70,17 @@ const RequesterSection = () => {
             {data && data.requester.length > 0 && (
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                     {/* FIX: Slice the array to enforce the limit on the frontend */}
-                    {data.requester.slice(0, LIMIT).map((requester) => (
+                    {data.requester.map((requester) => (
                         <RequesterCard key={requester.id} data={requester} />
                     ))}
                 </div>
             )}
+
+            <div className="my-6 flex items-center justify-center">
+                <Button asChild className="btn-main bg-[#B15A36]">
+                    <Link href={'/all-requesters'}>All Requesters <UserPlus /></Link>
+                </Button>
+            </div>
         </div>
     );
 };

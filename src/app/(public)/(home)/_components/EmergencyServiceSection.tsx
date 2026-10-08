@@ -1,7 +1,10 @@
 "use client";
 
 import { EmergencyServiceCard } from "@/components/EmergencyServiceCard";
+import { Button } from "@/components/ui/button";
 import { useEmergencyServices } from "@/hooks/useEmergencyServices";
+import { Siren } from "lucide-react";
+import Link from "next/link";
 
 function ServiceSkeleton() {
   return (
@@ -20,10 +23,8 @@ function ServiceSkeleton() {
   );
 }
 
-const LIMIT = 3;
-
 export function EmergencyServiceSection() {
-  const { data, isPending, error, refetch } = useEmergencyServices(1, LIMIT);
+  const { data, isPending, error, refetch } = useEmergencyServices(1, 3);
 
   return (
     <div className="container-main my-10 lg:my-16">
@@ -62,11 +63,17 @@ export function EmergencyServiceSection() {
 
       {data && data.services.length > 0 && (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {data.services.slice(0, LIMIT).map((service) => (
+          {data.services.map((service) => (
             <EmergencyServiceCard key={service.id} data={service} />
           ))}
         </div>
       )}
+
+      <div className="my-6 flex items-center justify-center">
+        <Button asChild className="btn-main bg-[#B15A36]">
+          <Link href={'/emergency-service'}>All Services <Siren /></Link>
+        </Button>
+      </div>
     </div>
   );
 }

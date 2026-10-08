@@ -1,9 +1,9 @@
 import { fetchBloodRequesters } from "@/api/requester";
 import { useQuery } from "@tanstack/react-query";
 
-export function useBloodRequester(page = 1, limit = 3) {
+export function useBloodRequester(rawPage = 1, rawLimit = 3) {
     return useQuery({
-        queryKey: ["blood_requester", page, limit],
-        queryFn: () => fetchBloodRequesters(page, limit)
+        queryKey: ["blood_requester", rawPage, rawLimit],
+        queryFn: () => fetchBloodRequesters(rawPage, rawLimit)
     })
 }
