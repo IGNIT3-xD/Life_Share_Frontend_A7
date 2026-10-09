@@ -24,7 +24,6 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-3 shrink-0">
           {/* Logo Mark Placeholder */}
           <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-white/10 border border-white/20">
-            {/** biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
             <svg
               width="20"
               height="20"

@@ -1,10 +1,10 @@
-import Navbar from "@/components/Navbar";
 import { Providers } from "@/providers/queryProviders";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 const Graphik = localFont({
   src: [
@@ -62,10 +62,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Providers>
-          <Navbar />
           <div className="flex-1">{children}</div>
           <Footer />
         </Providers>
+        <Toaster position="top-right" closeButton richColors/>
       </body>
     </html>
   );
