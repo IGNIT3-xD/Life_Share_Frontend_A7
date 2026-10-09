@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/a11y/useButtonType: <explanation> */
 "use client";
 
 import { useState } from "react";
@@ -55,13 +54,15 @@ const AllDonors = () => {
   const meta = data?.meta;
 
   // Reset pagination when filters change
-  const updateFilter = (setter: (v: string) => void) => (value: string) => {
-    setter(value);
-    setPage(1);
+  const updateFilter = <T,>(setter: (v: T) => void) => (value: T) => {
+    setter(value); // Save the new filter
+    setPage(1); // ALWAYS go back to page 1
+
+    // If you are on Page 3, and you suddenly filter for "B+", there might only be 1 page of results. This helper ensures you instantly snap back to Page 1 whenever you change a filter.
   };
 
-  const hasActiveFilters =
-    !!search || !!bloodGroup || !!availability || !!location;
+  // Explicitly convert a value to a boolean.
+  const hasActiveFilters = !!search || !!bloodGroup || !!availability || !!location;
 
   const resetFilters = () => {
     setSearch("");
@@ -85,7 +86,7 @@ const AllDonors = () => {
       </div>
 
       {/* Filter Bar */}
-      <div className="bg-white border border-gray-200 rounded-[2rem] p-4 md:p-6 shadow-sm mb-10">
+      <div className="bg-white border border-gray-200 rounded-xl p-4 md:p-6 shadow-sm mb-10">
         {/* Search Row */}
         <div className="mb-4">
           <SearchInput
@@ -126,7 +127,11 @@ const AllDonors = () => {
           />
           <FilterSelect
             value={sortBy}
-            onChange={(v) => updateFilter(setSortBy)(v || "desc")}
+            onChange={(v) => {
+              if (v === 'asc' || v === 'desc') {
+                updateFilter(setSortBy)(v)
+              }
+            }}
             options={SORT_OPTIONS}
             placeholder="Sort By"
           />
@@ -142,6 +147,7 @@ const AllDonors = () => {
               donor{(meta?.total ?? 0) !== 1 ? "s" : ""} found
             </p>
             <button
+              type="button"
               onClick={resetFilters}
               className="flex items-center gap-1.5 text-xs font-semibold text-red-600 hover:text-red-700 transition-colors"
             >
@@ -189,7 +195,7 @@ const AllDonors = () => {
           {hasActiveFilters && (
             <Button
               onClick={resetFilters}
-              className="btn-main bg-[#B15A36]"
+              className="btn-main bg-[#B15A36] mt-3"
             >
               Clear All Filters
             </Button>
@@ -199,10 +205,7 @@ const AllDonors = () => {
 
       {/* Donors Grid */}
       {!isPending && !error && donors.length > 0 && (
-        <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-200 ${isFetching ? "opacity-60" : "opacity-100"
-            }`}
-        >
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-opacity duration-200 ${isFetching ? "opacity-60" : "opacity-100"}`}>
           {donors.map((donor) => (
             <DonorCard key={donor.id} data={donor} />
           ))}
@@ -213,6 +216,7 @@ const AllDonors = () => {
       {meta && meta.totalPages > 1 && (
         <div className="mt-12 flex items-center justify-center gap-2">
           <button
+            type="button"
             disabled={page === 1}
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             className="h-10 px-5 rounded-full border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
@@ -224,6 +228,7 @@ const AllDonors = () => {
               const pageNum = i + 1;
               return (
                 <button
+                  type="button"
                   key={pageNum}
                   onClick={() => setPage(pageNum)}
                   className={`w-10 h-10 rounded-full text-sm font-semibold transition-colors ${page === pageNum
@@ -237,6 +242,7 @@ const AllDonors = () => {
             })}
           </div>
           <button
+            type="button"
             disabled={page === meta.totalPages}
             onClick={() => setPage((p) => Math.min(meta.totalPages, p + 1))}
             className="h-10 px-5 rounded-full border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
