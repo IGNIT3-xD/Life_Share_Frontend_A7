@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export default function RootLayout({
@@ -27,7 +26,6 @@ export default function RootLayout({
                 <span className="text-xl font-semibold tracking-wide border p-2 rounded-md">Life Share</span>
             </Link>
             <div className="flex-1">{children}</div>
-            <Footer />
         </div>
     );
 }
