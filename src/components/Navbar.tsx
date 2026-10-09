@@ -10,7 +10,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Find Donors", href: "/" },
+    { name: "Find Donors", href: "/donors" },
     { name: "Donate Blood", href: "/donate-blood" },
     { name: "Emergency Services", href: "/emergency-services" },
     { name: "About", href: "/about" },
@@ -64,7 +64,9 @@ export default function Navbar() {
             Log in
           </Link>
 
-          <Button className="hidden md:block btn-main bg-[#B15A36]">Donate Now</Button>
+          <Button className="hidden md:block btn-main bg-[#B15A36]">
+            Donate Now
+          </Button>
 
           <button
             type="button"

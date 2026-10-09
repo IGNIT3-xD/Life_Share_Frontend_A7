@@ -71,7 +71,9 @@ export function EmergencyServiceSection() {
 
       <div className="my-6 flex items-center justify-center">
         <Button asChild className="btn-main bg-[#B15A36]">
-          <Link href={'/emergency-service'}>All Services <Siren /></Link>
+          <Link href={"/emergency-service"}>
+            All Services <Siren />
+          </Link>
         </Button>
       </div>
     </div>
